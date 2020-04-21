@@ -2,11 +2,12 @@ const { Builder, By, Key, until } = require('selenium-webdriver');
 const { expect } = require('chai');
 
 describe('TodoApp', () => {
-  const driver = new Builder().forBrowser('chrome').build();
+  let driver;
+
+  before(() => (driver = new Builder().forBrowser('chrome').build()));
 
   it('should add a new todo successfully', async () => {
     await driver.get('http://todomvc.com/examples/react/');
-
     const newTodoField = By.css('.new-todo');
     const todoList = By.css('.todo-list li');
 
